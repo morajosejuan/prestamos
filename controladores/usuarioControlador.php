@@ -1,5 +1,5 @@
 <?php
-if($peticiomAjax){
+if($peticionAjax){
     require_once "../modelos/usuarioModelo.php";
 }else{
     require_once "./modelos/usuarioModelo.php";
@@ -8,7 +8,7 @@ if($peticiomAjax){
 class usuarioControlador extends usuarioModelo{
 
     /**************Controlador agregar usuario*************** */
-    public function agregar_usuario_controlador(){
+    public function agregar_usuario_controlador(){ /* Inicio del controlador*/
         $dni=mainModel::limpiar_cadena($_POST['usuario_dni_reg']);
         $nombre=mainModel::limpiar_cadena($_POST['usuario_nombre_reg']);
         $apellido=mainModel::limpiar_cadena($_POST['usuario_apellido_reg']);
@@ -26,8 +26,8 @@ class usuarioControlador extends usuarioModelo{
         if($dni=="" || $nombre=="" || $apellido=="" || $usuario=="" || $clave1=="" || $clave2=="" || $email==""){
             $alerta=[
                 "Alerta"=>"simple",
-                "Titulo"=>"Ocurrio un error inesperado",
-                "Texto"=>"No ha llenado todos los campos obligatorio",
+                "Titulo"=>"Ocurrió un error inesperado",
+                "Texto"=>"No has llenado todos los campos que son obligatorios",
                 "Tipo"=>"error"
             ];
             echo json_encode($alerta);
