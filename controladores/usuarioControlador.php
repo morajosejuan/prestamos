@@ -191,9 +191,64 @@ class usuarioControlador extends usuarioModelo{
 
            }
 
+        /* Comprobar claves*/
+        if($clave1!=$clave2){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Ocurrio un error inesperado",
+                "Texto"=>"Las CLAVES no son iguales",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
 
+        }else{
+            $clave=mainModel::encryption($clave1);
+        }
 
+        /* Comprobar Privilegios*/
+        if($privilegio<1 || $privilegio>3){
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Ocurrio un error inesperado",
+                "Texto"=>"El privilegio selecionado no es valido",
+                "Tipo"=>"error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
 
+        $datos_usuario_reg=[
+            "DNI"=>$dni,
+            "Nombre"=>$nombre,
+            "Apellido"=>$apellido,
+            "Telefono"=>$telefono,
+            "Direccion"=>$direccion,
+            "Email"=>$email,
+            "Usuario"=>$usuario,
+            "Clave"=>$clave,
+            "Estado"=>"Activa",
+            "Privilegio"=>$privilegio
+        ];
+        
+        $agregar_usuario=usuarioModelo::agregar_usuario_modelo($datos_usuario_reg);
+        
+        if($agregar_usuario->rowCount()==1){
+            $alerta=[
+                "Alerta"=>"limpiar",
+                "Titulo"=>"Usuario registrado",
+                "Texto"=>"Datos guardados con exito",
+                "Tipo"=>"success"
+            ];
+        }else{
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Ocurrio un error inesperado",
+                "Texto"=>"No se han guardado los datos",
+                "Tipo"=>"error"
+            ];          
+        }
+        echo json_encode($alerta);   
 
     }/* Fin del controlador*/
 
