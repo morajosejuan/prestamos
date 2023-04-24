@@ -252,5 +252,4 @@ class usuarioControlador extends usuarioModelo{
 
     }/* Fin del controlador*/
 
-
 }

@@ -6,7 +6,8 @@
 					<i class="far fa-times-circle show-nav-lateral"></i>
 					<img src="<?php echo SERVERURL; ?>vistas/assets/avatar/Avatar.png" class="img-fluid" alt="Avatar">
 					<figcaption class="roboto-medium text-center">
-						Carlos Alfaro <br><small class="roboto-condensed-light">Web Developer</small>
+						<?php echo $_SESSION['nombre_ikeo']. " ".$_SESSION['apellido_ikeo']; ?> <br><small class="roboto-condensed-light"><?php echo $_SESSION['usuario_ikeo']; ?></small>
+
 					</figcaption>
 				</figure>
 				<div class="full-box nav-lateral-bar"></div>
@@ -66,7 +67,7 @@
 								</li>
 							</ul>
 						</li>
-
+				<?php if($_SESSION['privilegio_ikeo']==1){ ?>
 						<li>
 							<a href="#" class="nav-btn-submenu"><i class="fas  fa-user-secret fa-fw"></i> &nbsp; Usuarios <i class="fas fa-chevron-down"></i></a>
 							<ul>
@@ -81,7 +82,7 @@
 								</li>
 							</ul>
 						</li>
-
+				<?php }?>
 						<li>
 							<a href="<?php echo SERVERURL;?>company/"><i class="fas fa-store-alt fa-fw"></i> &nbsp; Empresa</a>
 						</li>

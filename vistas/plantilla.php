@@ -18,6 +18,15 @@
 			require_once "./vistas/contenidos/".$vistas."-view.php";
 
 		}else{
+			session_start(['name'=>'IKEO']);
+
+			require_once "./controladores/loginControlador.php";
+			$lc=new loginControlador(); /* instancia al login controlador*/
+			if( !isset( $_SESSION['token_ikeo']) || !isset( $_SESSION['usuario_ikeo']) || !isset( $_SESSION['privilegio_ikeo']) || !isset( $_SESSION['id_ikeo']) ){
+				echo $lc->forzar_cierre_sesion_controlador();
+				exit();
+
+			}
 	?>
 	<!-- Main container -->
 	<main class="full-box main-container">
