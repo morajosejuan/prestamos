@@ -1,3 +1,9 @@
+<?php
+	if($_SESSION['privilegio_ikeo']!=1) {
+		echo $lc->forzar_cierre_sesion_controlador();
+		exit();
+	}
+?>
 <div class="full-box page-header">
 	<h3 class="text-left">
 		<i class="fas fa-plus fa-fw"></i> &nbsp; NUEVO USUARIO
