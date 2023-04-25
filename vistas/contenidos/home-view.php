@@ -58,7 +58,7 @@
 			<p>50 Registrados</p>
 		</div>
 	</a>
-<?php}?>
+<?php } ?>
 
 	<a href="<?php echo SERVERURL;?>company/" class="tile">
 		<div class="tile-tittle">Empresa</div>

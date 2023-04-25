@@ -102,4 +102,34 @@ class loginControlador extends loginModelo{
     }/*****Fin del controlador******/
 
 
+    /*****Controlador cierre de sesion******/
+    public function cerrar_sesion_controlador(){
+        session_start(['name'=>'IKEO']);
+        $token=mainModel::decryption($_POST['token']);
+        $usuario=mainModel::decryption($_POST['usuario']);
+
+        if($token==$_SESSION['token_ikeo'] &&  $usuario==$_SESSION['usuario_ikeo']){
+            session_unset();
+            session_destroy();
+            $alerta=[
+                "Alerta"=>"redireccionar",
+                "URL"=>SERVERURL."login/"
+
+            ];
+
+        }else{
+            $alerta=[
+                "Alerta"=>"simple",
+                "Titulo"=>"Ocurrió un error inesperado",
+                "Texto"=>"No se puedo cerrar la sesion en el sistema",
+                "Tipo"=>"error"
+            ];
+
+        }
+        echo json_encode($alerta);
+
+    }/*****Fin del controlador******/
+
+
+
 }
